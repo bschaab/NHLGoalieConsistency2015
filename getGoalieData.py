@@ -21,12 +21,23 @@ soup = BeautifulSoup(html)
 data_rows = soup.findAll('tr')[2:] 
 
 player_names = []
+split_names = []
+temp = []
+
 overall_data = [[td.getText() for td in data_rows[i].findAll('td')]
             for i in range(len(data_rows))]
 
 for row in overall_data:
 	if row:
-		player_names.append(row[1].encode('ascii','ignore'))
+		if (int(row[4]) >= 20):
+			player_names.append(row[1].encode('ascii','ignore'))
 
-print player_names
+#now have a list of goalies who played more than 20 games in 2015
+
+firsturl = "http://www.hockey-reference.com/players/"
+secondurl = "gamelog/2015/"
+
+for player in player_names:
+	print player.split()
+		
 
